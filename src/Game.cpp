@@ -29,6 +29,42 @@ void gamePlayInput(Paddle& player1, Paddle& player2)
 }
 
 
+void ballWallColitions(Ball& ball)
+{
+	if (ball.pos.x >= screenWidth - ball.radius || ball.pos.x <= ball.radius)
+	{
+		if (ball.pos.x >= screenWidth - ball.radius)
+		{
+			//scoreIncreas(scorePlayer1);
+			ball.pos.x = screenWidth - ball.radius;
+		}
+		else
+		{
+			//scoreIncreas(scorePlayer2);
+			ball.pos.x = ball.radius;
+		}
+		//player1.paddle.y = GetScreenHeight() / 2 - player1.paddle.height / 2;
+		//player2.paddle.y = GetScreenHeight() / 2 - player2.paddle.height / 2;
+		//resetBall(ball);
+		ball.speed.x *= -1.0f;
+	}
+
+	if (ball.pos.y >= screenHeight - ball.radius)
+	{
+		ball.pos.y = screenHeight - ball.radius;
+		ball.speed.y *= -1.0f;
+		//ball.goingUp = true;
+	}
+
+	if (ball.pos.y <= ball.radius)
+	{
+		ball.pos.y = ball.radius;
+		ball.speed.y *= -1.0f;
+		//ball.goingUp = false;
+	}
+}
+
+
 void runGame()
 {
 	Ball ball;
@@ -41,7 +77,7 @@ void runGame()
 	while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE))
 	{
 		gamePlayInput(player1, player2);
-
+		ballWallColitions(ball);
 		ballMovment(ball);
 		slSetForeColor(0.5, 0.9, 0.5, 0.7);
 		slRectangleFill(ball.hitBox.x, ball.hitBox.y, ball.hitBox.width, ball.hitBox.height);

@@ -2,8 +2,8 @@
 #include "sl.h"
 #include <iostream>
 
-extern float screenHeight;
-extern float screenWidth;
+extern int screenHeight;
+extern int screenWidth;
 ;
 
 void ballMovment(Ball& ball)

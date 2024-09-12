@@ -1,8 +1,8 @@
 #include "sl.h"
 #include "Player.h"
 
-extern float screenHeight;
-extern float screenWidth;
+extern int screenHeight;
+extern int screenWidth;
 
 void moveUp(Paddle& paddle)
 {

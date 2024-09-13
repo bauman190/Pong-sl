@@ -65,6 +65,34 @@ void ballWallColitions(Ball& ball)
 }
 
 
+bool recRecColition(Ball ball, Paddle player) 
+{
+
+	if (ball.hitBox.x + ball.hitBox.width / 2 >= player.paddle.x - player.paddle.width / 2 &&
+		ball.hitBox.x - ball.hitBox.width / 2 <= player.paddle.x + player.paddle.width / 2 &&
+		ball.hitBox.y + ball.hitBox.height / 2 >= player.paddle.y - player.paddle.height / 2 &&
+		ball.hitBox.y - ball.hitBox.height / 2 <= player.paddle.y + player.paddle.height / 2)
+	{
+		return true;
+	}
+	return false;
+
+}
+
+void ballPaddleColitions(Ball& ball, Paddle player1, Paddle player2)
+{
+
+	if (recRecColition(ball, player1))
+	{
+		ball.speed.x *= -1.0f;
+	}
+
+	if (recRecColition(ball, player2))
+	{
+		ball.speed.x *= -1.0f;
+	}
+}
+
 void runGame()
 {
 	Ball ball;
@@ -79,6 +107,9 @@ void runGame()
 		gamePlayInput(player1, player2);
 		ballWallColitions(ball);
 		ballMovment(ball);
+
+		ballPaddleColitions(ball, player1, player2);
+		
 		slSetForeColor(0.5, 0.9, 0.5, 0.7);
 		slRectangleFill(ball.hitBox.x, ball.hitBox.y, ball.hitBox.width, ball.hitBox.height);
 		slSetForeColor(1, 1, 1, 1);

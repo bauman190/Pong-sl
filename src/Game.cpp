@@ -53,14 +53,12 @@ void ballWallColitions(Ball& ball)
 	{
 		ball.pos.y = screenHeight - ball.radius;
 		ball.speed.y *= -1.0f;
-		//ball.goingUp = true;
 	}
 
 	if (ball.pos.y <= ball.radius)
 	{
 		ball.pos.y = ball.radius;
 		ball.speed.y *= -1.0f;
-		//ball.goingUp = false;
 	}
 }
 
@@ -81,34 +79,34 @@ bool recRecColition(Ball ball, Paddle player)
 
 void ballPaddleColitions(Ball& ball, Paddle player1, Paddle player2)
 {
+	if (recRecColition(ball, player1))
+	{
+		if (ball.speed.y < 0 && ball.pos.y > player1.paddle.y)
+		{
+			ball.pos.x = player1.paddle.x + player1.paddle.width / 2 + ball.radius;
+			ball.speed.y *= -1.0f;
+		}
+		else if (ball.speed.y > 0 && ball.pos.y < player1.paddle.y)
+		{
+			ball.pos.x = player1.paddle.x + player1.paddle.width / 2 + ball.radius;
+			ball.speed.y *= -1.0f;
+		}
+		ball.speed.x *= -1.0f;
+	}
+	
 
-	if (recRecColition(ball, player1) && ball.speed.y < 0 && ball.pos.y > player1.paddle.y)
+	if (recRecColition(ball, player2))
 	{
-		ball.speed.x *= -1.0f;
-		ball.speed.y *= -1.0f;
-	}
-	else if (recRecColition(ball, player1) && ball.speed.y > 0 && ball.pos.y < player1.paddle.y)
-	{
-		ball.speed.x *= -1.0f;
-		ball.speed.y *= -1.0f;
-	}
-	else if (recRecColition(ball, player1))
-	{
-		ball.speed.x *= -1.0f;
-	}
-
-	if (recRecColition(ball, player2) && ball.speed.y < 0 && ball.pos.y > player2.paddle.y)
-	{
-		ball.speed.x *= -1.0f;
-		ball.speed.y *= -1.0f;
-	}
-	else if (recRecColition(ball, player2) && ball.speed.y > 0 && ball.pos.y < player2.paddle.y)
-	{
-		ball.speed.x *= -1.0f;
-		ball.speed.y *= -1.0f;
-	}
-	else if (recRecColition(ball, player2))
-	{
+		if (ball.speed.y < 0 && ball.pos.y > player2.paddle.y)
+		{
+			ball.pos.x = player2.paddle.x - player2.paddle.width / 2 - ball.radius;
+			ball.speed.y *= -1.0f;
+		}
+		else if (ball.speed.y > 0 && ball.pos.y < player2.paddle.y)
+		{
+			ball.pos.x = player2.paddle.x - player2.paddle.width / 2 - ball.radius;
+			ball.speed.y *= -1.0f;
+		}
 		ball.speed.x *= -1.0f;
 	}
 }

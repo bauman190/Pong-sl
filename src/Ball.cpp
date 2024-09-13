@@ -50,12 +50,12 @@ void resetBall(Ball& ball)
 
 int randValue()
 {
-    srand(time(NULL));
-    return rand() % 1;
+    return rand() % 2;
 }
 
 void randBall(Ball& ball)
 {
+    srand(time(NULL));
     int rand = randValue();
     if (rand == 0)
     {

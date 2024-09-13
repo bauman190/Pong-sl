@@ -22,7 +22,6 @@ void inItBall(Ball& ball)
     ball.pos.y = screenHeight * 0.5;
     ball.speed.x = ball.initialSpeed;
     ball.speed.y = ball.initialSpeed;
-    ball.goingUp = true;
     ball.hitBox.x = ball.pos.x;
     ball.hitBox.y = ball.pos.y;
     ball.hitBox.width = ball.radius * 2;
@@ -38,7 +37,6 @@ void resetBall(Ball& ball)
     ball.pos.y = screenHeight * 0.5;
     ball.speed.x = ball.initialSpeed;
     ball.speed.y = ball.initialSpeed;
-    ball.goingUp = true;
     ball.hitBox.x = ball.pos.x - ball.radius;
     ball.hitBox.y = ball.pos.y - ball.radius;
     ball.hitBox.width = ball.radius * 2;

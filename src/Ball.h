@@ -8,7 +8,6 @@ struct Ball
 	Vector2 pos;
 	Vector2 speed;
 	float radius;
-	bool goingUp;
 	Rectangle hitBox;
 	float initialSpeed;
 };

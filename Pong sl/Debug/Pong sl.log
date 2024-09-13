@@ -1,3 +1,0 @@
-﻿  main.cpp
-C:\Users\bauma\source\repos\Pong sl\Pong sl\main.cpp(4,1): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
-  Pong sl.vcxproj -> C:\Users\bauma\source\repos\Pong sl\Debug\Pong sl.exe

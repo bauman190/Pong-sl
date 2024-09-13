@@ -9,19 +9,19 @@ int screenWidth = 960;
 
 void gamePlayInput(Paddle& player1, Paddle& player2)
 {
-	if (slGetKey('W'))
+	if (slGetKey('W') && player1.paddle.y + player1.paddle.height / 2 < screenHeight)
 	{
 		moveUp(player1);
 	}
-	if (slGetKey('S'))
+	if (slGetKey('S') && player1.paddle.y - player1.paddle.height / 2 > 0)
 	{
 		moveDown(player1);
 	}
-	if (slGetKey(SL_KEY_UP))
+	if (slGetKey(SL_KEY_UP) && player2.paddle.y + player2.paddle.height / 2 < screenHeight)
 	{
 		moveUp(player2);
 	}
-	if (slGetKey(SL_KEY_DOWN))
+	if (slGetKey(SL_KEY_DOWN) && player2.paddle.y - player2.paddle.height / 2 > 0)
 	{
 		moveDown(player2);
 	}

@@ -1,11 +1,14 @@
 #include "sl.h"
 #include "Ball.h"
 #include "Player.h"
+#include <iostream>
+#include <string>
+using namespace std;
 
 int screenHeight = 540;
 int screenWidth = 960;
 
-
+//Preguntarle al profe lo del dibujado de texto
 
 void gamePlayInput(Paddle& player1, Paddle& player2)
 {
@@ -29,7 +32,7 @@ void gamePlayInput(Paddle& player1, Paddle& player2)
 }
 
 
-void ballWallColitions(Ball& ball)
+void ballWallColitions(Ball& ball, Paddle& player1, Paddle& player2)
 {
 	if (ball.pos.x >= screenWidth - ball.radius || ball.pos.x <= ball.radius)
 	{
@@ -43,8 +46,8 @@ void ballWallColitions(Ball& ball)
 			//scoreIncreas(scorePlayer2);
 			resetBall(ball);
 		}
-		//player1.paddle.y = GetScreenHeight() / 2 - player1.paddle.height / 2;
-		//player2.paddle.y = GetScreenHeight() / 2 - player2.paddle.height / 2;
+		player1.paddle.y = screenHeight / 2;
+		player2.paddle.y = screenHeight / 2;
 		//resetBall(ball);
 		
 	}
@@ -116,14 +119,20 @@ void runGame()
 	Ball ball;
 	Paddle player1;
 	Paddle player2;
-	inItBall(ball);
+	int scoreP1 = 0;
+	int scoreP2 = 0;
+	string score = to_string(scoreP1);
+	const char* textScore = score.c_str();
 	slWindow(screenWidth, screenHeight, "Pong", false);
 	inItPlayers(player1, player2);
-
+	inItBall(ball);
+	//slSetFont(slLoadFont("Minecraft.ttf"), 14);
+	//slSetTextAlign(SL_ALIGN_CENTER);
+	
 	while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE))
 	{
 		gamePlayInput(player1, player2);
-		ballWallColitions(ball);
+		ballWallColitions(ball, player1, player2);
 		ballMovment(ball);
 
 		ballPaddleColitions(ball, player1, player2);
@@ -133,6 +142,10 @@ void runGame()
 		slSetForeColor(1, 1, 1, 1);
 		slRectangleFill(player2.paddle.x, player2.paddle.y, player2.paddle.width, player2.paddle.height);
 		slRectangleFill(player1.paddle.x, player1.paddle.y, player1.paddle.width, player1.paddle.height);
+
+		//slSetFontSize(14);
+		slText(200, 200,textScore);
+
 		slCircleFill(ball.pos.x, ball.pos.y, ball.radius, 20);
 		slRender();
 	}

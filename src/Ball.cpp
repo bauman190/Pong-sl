@@ -4,7 +4,6 @@
 
 extern int screenHeight;
 extern int screenWidth;
-;
 
 void ballMovment(Ball& ball)
 {

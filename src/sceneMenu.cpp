@@ -1,10 +1,13 @@
-#include "raylib.h"
 #include "ScreenOptions.h"
 #include "Button.h"
+#include "sl.h"
 
 extern Screen currentScreen;
 
 extern bool gameRuning;
+
+extern int screenHeight;
+extern int screenWidth;
 
 static Button play;
 static Button Rules;
@@ -30,23 +33,26 @@ void checkImputMenu()
 void drawMenu() 
 {
 
-	BeginDrawing();
-	ClearBackground(BLACK);
+	slSetForeColor(1, 1, 1, 1);
 
-	DrawText("Pong", GetScreenWidth() / 2 - MeasureText("Pong", 100) / 2, GetScreenHeight() * 0.20, 100, WHITE);
+	slText(screenWidth / 2, screenHeight * 0.20, "PONG");
 
-	DrawText("Play", play.button.x, play.button.y, play.button.height, WHITE);
-	DrawText("Rules", Rules.button.x, Rules.button.y, Rules.button.height, WHITE);
-	DrawText("Exit", exit.button.x, exit.button.y, exit.button.height, WHITE);
+	slText(play.button.x, play.button.y, "Play");
+	slText( Rules.button.x, Rules.button.y, "Rules");
+	slText( exit.button.x, exit.button.y, "Exit");
 	if (onButton(play))
 	{
-		DrawRectangle(play.button.x, play.button.y, play.button.width, play.button.height, WHITE);
-		DrawText("Play", play.button.x, play.button.y, play.button.height, BLACK);
+		slRectangleFill(play.button.x, play.button.y, play.button.width, play.button.height);
+		slSetForeColor(0, 0, 0, 1);
+		slText(play.button.x, play.button.y, "Play");
+		slSetForeColor(1, 1, 1, 1);
 	}
 	else if (onButton(exit))
 	{
-		DrawRectangle(exit.button.x, exit.button.y, exit.button.width, exit.button.height, WHITE);
-		DrawText("Exit", exit.button.x, exit.button.y, exit.button.height, BLACK);
+		slRectangleFill(exit.button.x, exit.button.y, exit.button.width, exit.button.height);
+		slSetForeColor(0, 0, 0, 1);
+		slText(exit.button.x, exit.button.y, "Exit");
+		slSetForeColor(1, 1, 1, 1);
 	}
 	else if (onButton(Rules))
 	{
@@ -55,7 +61,7 @@ void drawMenu()
 	}
 	
 	DrawText("By: Juan Bautista Castignani",0 , GetScreenHeight() * 0.95, 25, WHITE);
-	EndDrawing();
+	
 
 }
 

@@ -1,9 +1,13 @@
 #include "Button.h"
+#include "sl.h"
+
+
+bool collitionPointRec(Button button, int pointX, int pointY);
 
 bool clickButton(Button button)
 {
 
-	if (CheckCollisionPointRec(GetMousePosition(), button.button) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	if (collitionPointRec(button, slGetMouseX(), slGetMouseY()) && slGetMouseButton(SL_MOUSE_BUTTON_1))
 	{
 		return true;
 	}
@@ -13,7 +17,19 @@ bool clickButton(Button button)
 bool onButton(Button button)
 {
 
-	if (CheckCollisionPointRec(GetMousePosition(), button.button))
+	if (collitionPointRec(button, slGetMouseX(), slGetMouseY()))
+	{
+		return true;
+	}
+	return false;
+}
+
+bool collitionPointRec(Button button, int pointX, int pointY)
+{
+	if (button.button.x - button.button.width /2 < pointX && 
+		button.button.x + button.button.width / 2 > pointX &&
+		button.button.y - button.button.height / 2 < pointY &&
+		button.button.y + button.button.height / 2 < pointY)
 	{
 		return true;
 	}

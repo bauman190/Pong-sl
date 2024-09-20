@@ -114,7 +114,9 @@
       <AdditionalDependencies>sigil.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)lib\*.dll"  "$(OutDir)" /y</Command>
+      <Command>copy "$(SolutionDir)lib\*.dll"  "$(OutDir)" /y
+
+xcopy "$(SolutionDir)res" "$(OutDir)res" /i  /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,7 +139,9 @@
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)lib\*.dll"  "$(OutDir)" /y</Command>
+      <Command>copy "$(SolutionDir)lib\*.dll"  "$(OutDir)" /y
+
+xcopy "$(SolutionDir)res" "$(OutDir)res" /i  /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

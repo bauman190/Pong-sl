@@ -8,7 +8,7 @@ using namespace std;
 int screenHeight = 540;
 int screenWidth = 960;
 
-//Preguntarle al profe lo del dibujado de texto
+
 
 void gamePlayInput(Paddle& player1, Paddle& player2)
 {
@@ -32,23 +32,27 @@ void gamePlayInput(Paddle& player1, Paddle& player2)
 }
 
 
-void ballWallColitions(Ball& ball, Paddle& player1, Paddle& player2)
+
+void scoreIncreas(int& score)
+{
+	score++;
+}
+
+void ballWallColitions(Ball& ball, Paddle& player1, Paddle& player2, int& scoreP1, int& scoreP2)
 {
 	if (ball.pos.x >= screenWidth - ball.radius || ball.pos.x <= ball.radius)
 	{
 		if (ball.pos.x >= screenWidth - ball.radius)
 		{
-			//scoreIncreas(scorePlayer1);
-			resetBall(ball);
+			scoreIncreas(scoreP1);
 		}
 		else
 		{
-			//scoreIncreas(scorePlayer2);
-			resetBall(ball);
+			scoreIncreas(scoreP2);
 		}
 		player1.paddle.y = screenHeight / 2;
 		player2.paddle.y = screenHeight / 2;
-		//resetBall(ball);
+		resetBall(ball);
 		
 	}
 
@@ -121,18 +125,20 @@ void runGame()
 	Paddle player2;
 	int scoreP1 = 0;
 	int scoreP2 = 0;
-	string score = to_string(scoreP1);
-	const char* textScore = score.c_str();
+	const char* textScoreP1;
+	const char* textScoreP2;
+	string scoreP1Text;
+	string scoreP2Text;
 	slWindow(screenWidth, screenHeight, "Pong", false);
 	inItPlayers(player1, player2);
 	inItBall(ball);
-	//slSetFont(slLoadFont("Minecraft.ttf"), 14);
-	//slSetTextAlign(SL_ALIGN_CENTER);
+	slSetFont(slLoadFont("Minecraft.ttf"), 50);
+	slSetTextAlign(SL_ALIGN_CENTER);
 	
 	while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE))
 	{
 		gamePlayInput(player1, player2);
-		ballWallColitions(ball, player1, player2);
+		ballWallColitions(ball, player1, player2, scoreP1, scoreP2);
 		ballMovment(ball);
 
 		ballPaddleColitions(ball, player1, player2);
@@ -143,8 +149,13 @@ void runGame()
 		slRectangleFill(player2.paddle.x, player2.paddle.y, player2.paddle.width, player2.paddle.height);
 		slRectangleFill(player1.paddle.x, player1.paddle.y, player1.paddle.width, player1.paddle.height);
 
-		//slSetFontSize(14);
-		slText(200, 200,textScore);
+		scoreP1Text = to_string(scoreP1);
+		const char* textScoreP1 = scoreP1Text.c_str();
+		scoreP2Text = to_string(scoreP2);
+		const char* textScoreP2 = scoreP2Text.c_str();
+		slSetFontSize(50);
+		slText(screenWidth * 0.40, screenHeight * 0.5, textScoreP1);
+		slText(screenWidth * 0.60, screenHeight * 0.5, textScoreP2);
 
 		slCircleFill(ball.pos.x, ball.pos.y, ball.radius, 20);
 		slRender();

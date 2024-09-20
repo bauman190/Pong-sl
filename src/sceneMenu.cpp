@@ -61,9 +61,10 @@ void drawMenu()
 		slText(Rules.button.x, Rules.button.y, "Rules");
 		slSetForeColor(1, 1, 1, 1);
 	}
-	slSetFontSize(10);
-
+	slSetFontSize(20);
+	slSetTextAlign(SL_ALIGN_LEFT);
 	slText(0,screenHeight * 0.05, "By: Juan Bautista Castignani");
+	slSetTextAlign(SL_ALIGN_CENTER);
 	slSetFontSize(50);
 
 }

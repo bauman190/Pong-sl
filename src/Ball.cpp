@@ -25,6 +25,8 @@ void inItBall(Ball& ball)
     ball.hitBox.y = ball.pos.y;
     ball.hitBox.width = ball.radius * 2;
     ball.hitBox.height = ball.radius * 2;
+    ball.speedUp = 1.1f;
+    ball.maxSpeed = 350.0f;
 
     randBall(ball);
 }
@@ -71,5 +73,16 @@ void randBall(Ball& ball)
     else
     {
         ball.speed.y *= 1.0f;
+    }
+}
+
+void ballSpeedUP(Ball& ball)
+{  
+    ball.speed.x *= ball.speedUp;
+    ball.speed.y *= ball.speedUp;   
+    if (+ball.speed.x > ball.maxSpeed)
+    {
+         ball.speed.x = ball.maxSpeed;
+         ball.speed.y = ball.maxSpeed;
     }
 }

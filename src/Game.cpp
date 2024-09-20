@@ -1,7 +1,6 @@
 #include "sl.h"
 #include "Ball.h"
 #include "Player.h"
-#include <iostream>
 #include <string>
 using namespace std;
 
@@ -110,6 +109,7 @@ void ballPaddleColitions(Ball& ball, Paddle player1, Paddle player2)
 			ball.speed.y *= -1.0f;
 		}
 		ball.speed.x *= -1.0f;
+		ballSpeedUP(ball);
 	}
 	
 
@@ -137,7 +137,9 @@ void ballPaddleColitions(Ball& ball, Paddle player1, Paddle player2)
 			ball.speed.y *= -1.0f;
 		}
 		ball.speed.x *= -1.0f;
+		ballSpeedUP(ball);
 	}
+	
 }
 
 void runGame()
@@ -154,7 +156,7 @@ void runGame()
 	slWindow(screenWidth, screenHeight, "Pong", false);
 	inItPlayers(player1, player2);
 	inItBall(ball);
-	slSetFont(slLoadFont("Minecraft.ttf"), 50);
+	slSetFont(slLoadFont("res/Minecraft.ttf"), 50);
 	slSetTextAlign(SL_ALIGN_CENTER);
 	
 	while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE))

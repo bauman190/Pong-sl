@@ -88,14 +88,25 @@ void ballPaddleColitions(Ball& ball, Paddle player1, Paddle player2)
 {
 	if (recRecColition(ball, player1))
 	{
-		if (ball.speed.y < 0 && ball.pos.y > player1.paddle.y)
+		if (ball.pos.y > player1.paddle.y + player1.paddle.height /2)
+		{
+			ball.pos.y = player1.paddle.y + player1.paddle.height / 2 + ball.radius;
+		}
+		else if (ball.pos.y < player1.paddle.y - player1.paddle.height / 2)
+		{
+			ball.pos.y = player1.paddle.y - player1.paddle.height / 2 - ball.radius;
+		}
+		else
 		{
 			ball.pos.x = player1.paddle.x + player1.paddle.width / 2 + ball.radius;
+		}
+
+		if (ball.speed.y < 0 && ball.pos.y > player1.paddle.y)
+		{
 			ball.speed.y *= -1.0f;
 		}
 		else if (ball.speed.y > 0 && ball.pos.y < player1.paddle.y)
 		{
-			ball.pos.x = player1.paddle.x + player1.paddle.width / 2 + ball.radius;
 			ball.speed.y *= -1.0f;
 		}
 		ball.speed.x *= -1.0f;
@@ -104,14 +115,25 @@ void ballPaddleColitions(Ball& ball, Paddle player1, Paddle player2)
 
 	if (recRecColition(ball, player2))
 	{
-		if (ball.speed.y < 0 && ball.pos.y > player2.paddle.y)
+		if (ball.pos.y > player2.paddle.y + player2.paddle.height / 2)
+		{
+			ball.pos.y = player2.paddle.y + player2.paddle.height / 2 + ball.radius;
+		}
+		else if (ball.pos.y < player2.paddle.y - player2.paddle.height / 2)
+		{
+			ball.pos.y = player2.paddle.y - player2.paddle.height / 2 - ball.radius;
+		}
+		else
 		{
 			ball.pos.x = player2.paddle.x - player2.paddle.width / 2 - ball.radius;
+		}
+
+		if (ball.speed.y < 0 && ball.pos.y > player2.paddle.y)
+		{
 			ball.speed.y *= -1.0f;
 		}
 		else if (ball.speed.y > 0 && ball.pos.y < player2.paddle.y)
 		{
-			ball.pos.x = player2.paddle.x - player2.paddle.width / 2 - ball.radius;
 			ball.speed.y *= -1.0f;
 		}
 		ball.speed.x *= -1.0f;

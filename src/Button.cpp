@@ -26,10 +26,10 @@ bool onButton(Button button)
 
 bool collitionPointRec(Button button, int pointX, int pointY)
 {
-	if (button.button.x - button.button.width /2 < pointX && 
-		button.button.x + button.button.width / 2 > pointX &&
-		button.button.y - button.button.height / 2 < pointY &&
-		button.button.y + button.button.height / 2 < pointY)
+	if (button.button.x - button.button.width / 2 <= pointX && 
+		button.button.x + button.button.width / 2 >= pointX &&
+		button.button.y - button.button.height / 2 <= pointY &&
+		button.button.y + button.button.height / 2 >= pointY)
 	{
 		return true;
 	}

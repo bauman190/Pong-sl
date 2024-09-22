@@ -143,8 +143,8 @@ void drawGamePlay(Ball ball, Paddle player1, Paddle player2, int scoreP1, int sc
 {
 	std::string scoreP1Text;
 	std::string scoreP2Text;
-	const char* textScoreP1 = scoreP1Text.c_str();
-	const char* textScoreP2 = scoreP2Text.c_str();
+	const char* textScoreP1;
+	const char* textScoreP2;
 
 	slSetForeColor(0.5, 0.9, 0.5, 0.7);
 	slRectangleFill(ball.hitBox.x, ball.hitBox.y, ball.hitBox.width, ball.hitBox.height);

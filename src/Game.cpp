@@ -16,6 +16,8 @@ Screen currentScreen = menu;
 bool gameRuning = true;
 
 
+
+
 void runGame()
 {
 	Ball ball;
@@ -23,10 +25,6 @@ void runGame()
 	Paddle player2;
 	int scoreP1 = 0;
 	int scoreP2 = 0;
-	string scoreP1Text;
-	string scoreP2Text;
-	const char* textScoreP1 = scoreP1Text.c_str();
-	const char* textScoreP2 = scoreP2Text.c_str();
 
 	slWindow(screenWidth, screenHeight, "Pong", false);
 	inItPlayers(player1, player2);
@@ -46,27 +44,6 @@ void runGame()
 		case gameplay:
 			updateGameplay(ball, player1, player2, scoreP1, scoreP2);
 			drawGamePlay(ball, player1, player2, scoreP1, scoreP2);
-			/*gamePlayInput(player1, player2);
-			ballWallColitions(ball, player1, player2, scoreP1, scoreP2);
-			ballMovment(ball);
-
-			ballPaddleColitions(ball, player1, player2);
-
-			slSetForeColor(0.5, 0.9, 0.5, 0.7);
-			slRectangleFill(ball.hitBox.x, ball.hitBox.y, ball.hitBox.width, ball.hitBox.height);
-			slSetForeColor(1, 1, 1, 1);
-			slRectangleFill(player2.paddle.x, player2.paddle.y, player2.paddle.width, player2.paddle.height);
-			slRectangleFill(player1.paddle.x, player1.paddle.y, player1.paddle.width, player1.paddle.height);
-
-			scoreP1Text = to_string(scoreP1);
-			textScoreP1 = scoreP1Text.c_str();
-			scoreP2Text = to_string(scoreP2);
-			textScoreP2 = scoreP2Text.c_str();
-			slSetFontSize(50);
-			slText(screenWidth * 0.40, screenHeight * 0.5, textScoreP1);
-			slText(screenWidth * 0.60, screenHeight * 0.5, textScoreP2);
-
-			slCircleFill(ball.pos.x, ball.pos.y, ball.radius, 20);*/
 			break;
 		case rules:
 			break;

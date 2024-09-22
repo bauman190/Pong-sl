@@ -5,6 +5,7 @@
 #include "sceneMenu.h"
 #include "sceneGameplay.h"
 #include "Rules.h"
+#include "Pause.h"
 
 int screenHeight = 540;
 int screenWidth = 960;
@@ -31,14 +32,16 @@ void runGame()
 	slSetTextAlign(SL_ALIGN_CENTER);
 	inItMenu();
 	inItRules();
+	inItPauseMenu();
 	
-	while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE) && gameRuning)
+	while (!slShouldClose() && gameRuning)
 	{
 		switch (currentScreen)
 		{
 		case menu:
 			checkImputMenu();
 			drawMenu();
+			resetGamePlay(ball, player1, player2, scoreP1, scoreP2);
 			break;
 		case gameplay:
 			updateGameplay(ball, player1, player2, scoreP1, scoreP2);

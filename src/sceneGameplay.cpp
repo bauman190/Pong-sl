@@ -2,9 +2,13 @@
 #include "Player.h"
 #include "Ball.h"
 #include <string>
+#include "ScreenOptions.h"
+#include "Pause.h"
 
 extern int screenHeight;
 extern int screenWidth;
+
+inGameScene scene;
 
 
 void gamePlayInput(Paddle& player1, Paddle& player2)
@@ -24,6 +28,10 @@ void gamePlayInput(Paddle& player1, Paddle& player2)
 	if (slGetKey(SL_KEY_DOWN) && player2.paddle.y - player2.paddle.height / 2 > 0)
 	{
 		moveDown(player2);
+	}
+	if (slGetKey(SL_KEY_ESCAPE))
+	{
+		scene = Pause;
 	}
 
 }
@@ -141,33 +149,65 @@ void ballPaddleColitions(Ball& ball, Paddle player1, Paddle player2)
 
 void drawGamePlay(Ball ball, Paddle player1, Paddle player2, int scoreP1, int scoreP2)
 {
-	std::string scoreP1Text;
-	std::string scoreP2Text;
+	std::string intTostring1;
+	std::string intTostring2;
 	const char* textScoreP1;
 	const char* textScoreP2;
 
-	slSetForeColor(0.5, 0.9, 0.5, 0.7);
-	slRectangleFill(ball.hitBox.x, ball.hitBox.y, ball.hitBox.width, ball.hitBox.height);
-	slSetForeColor(1, 1, 1, 1);
-	slRectangleFill(player2.paddle.x, player2.paddle.y, player2.paddle.width, player2.paddle.height);
-	slRectangleFill(player1.paddle.x, player1.paddle.y, player1.paddle.width, player1.paddle.height);
+	switch (scene)
+	{
+	case Game:
+		slSetForeColor(0.5, 0.9, 0.5, 0.7);
+		slRectangleFill(ball.hitBox.x, ball.hitBox.y, ball.hitBox.width, ball.hitBox.height);
+		slSetForeColor(1, 1, 1, 1);
+		slRectangleFill(player2.paddle.x, player2.paddle.y, player2.paddle.width, player2.paddle.height);
+		slRectangleFill(player1.paddle.x, player1.paddle.y, player1.paddle.width, player1.paddle.height);
 
-	scoreP1Text = std::to_string(scoreP1);
-	textScoreP1 = scoreP1Text.c_str();
-	scoreP2Text = std::to_string(scoreP2);
-	textScoreP2 = scoreP2Text.c_str();
-	slSetFontSize(50);
-	slText(screenWidth * 0.40, screenHeight * 0.5, textScoreP1);
-	slText(screenWidth * 0.60, screenHeight * 0.5, textScoreP2);
+		intTostring1 = std::to_string(scoreP1);
+		textScoreP1 = intTostring1.c_str();
+		intTostring2 = std::to_string(scoreP2);
+		textScoreP2 = intTostring2.c_str();
+		slSetFontSize(50);
+		slText(screenWidth * 0.40, screenHeight * 0.5, textScoreP1);
+		slText(screenWidth * 0.60, screenHeight * 0.5, textScoreP2);
 
-	slCircleFill(ball.pos.x, ball.pos.y, ball.radius, 20);
+		slCircleFill(ball.pos.x, ball.pos.y, ball.radius, 20);
+		break;
+	case Pause:
+		drawPause();
+		break;
+	case Win:
+		break;
+	default:
+		break;
+	}
 }
 
 void updateGameplay(Ball& ball, Paddle& player1, Paddle& player2, int& scoreP1, int& scoreP2)
 {
-	gamePlayInput(player1, player2);
-	ballWallColitions(ball, player1, player2, scoreP1, scoreP2);
-	ballMovment(ball);
+	switch (scene)
+	{
+	case Game:
+		gamePlayInput(player1, player2);
+		ballWallColitions(ball, player1, player2, scoreP1, scoreP2);
+		ballMovment(ball);
 
-	ballPaddleColitions(ball, player1, player2);
+		ballPaddleColitions(ball, player1, player2);
+		break;
+	case Pause:
+		inputPause();
+		break;
+	case Win:
+		break;
+	default:
+		break;
+	}
+}
+
+void resetGamePlay(Ball& ball, Paddle& player1, Paddle& player2, int& scoreP1, int& scoreP2)
+{
+	resetBall(ball);
+	resetPaddles(player1, player2);
+	scoreP1 = 0;
+	scoreP2 = 0;
 }

@@ -1,12 +1,10 @@
 #include "sl.h"
 #include "Ball.h"
 #include "Player.h"
-#include <string>
 #include "ScreenOptions.h"
 #include "sceneMenu.h"
 #include "sceneGameplay.h"
-
-using namespace std;
+#include "Rules.h"
 
 int screenHeight = 540;
 int screenWidth = 960;
@@ -32,6 +30,7 @@ void runGame()
 	slSetFont(slLoadFont("res/Minecraft.ttf"), 50);
 	slSetTextAlign(SL_ALIGN_CENTER);
 	inItMenu();
+	inItRules();
 	
 	while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE) && gameRuning)
 	{
@@ -46,6 +45,8 @@ void runGame()
 			drawGamePlay(ball, player1, player2, scoreP1, scoreP2);
 			break;
 		case rules:
+			inputRules();
+			drawRules();
 			break;
 		default:
 			break;

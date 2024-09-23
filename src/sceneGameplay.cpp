@@ -4,12 +4,17 @@
 #include <string>
 #include "ScreenOptions.h"
 #include "Pause.h"
+#include "Win.h"
 
 extern int screenHeight;
 extern int screenWidth;
 
 inGameScene scene;
+static int scoreToWin = 5;
+extern WhoWins whoWins;
 
+//void drawGamePlay(Ball ball, Paddle player1, Paddle player2, int scoreP1, int scoreP2, WhoWins whoWins);
+//void updateGameplay(Ball& ball, Paddle& player1, Paddle& player2, int& scoreP1, int& scoreP2, WhoWins& whoWins);
 
 void gamePlayInput(Paddle& player1, Paddle& player2)
 {
@@ -147,7 +152,7 @@ void ballPaddleColitions(Ball& ball, Paddle player1, Paddle player2)
 
 }
 
-void drawGamePlay(Ball ball, Paddle player1, Paddle player2, int scoreP1, int scoreP2)
+void drawGamePlay(Ball ball, Paddle player1, Paddle player2, int scoreP1, int scoreP2, WhoWins whoWins)
 {
 	std::string intTostring1;
 	std::string intTostring2;
@@ -177,14 +182,28 @@ void drawGamePlay(Ball ball, Paddle player1, Paddle player2, int scoreP1, int sc
 		drawPause();
 		break;
 	case Win:
+		drawWin(whoWins);
 		break;
 	default:
 		break;
 	}
 }
 
-void updateGameplay(Ball& ball, Paddle& player1, Paddle& player2, int& scoreP1, int& scoreP2)
+void updateGameplay(Ball& ball, Paddle& player1, Paddle& player2, int& scoreP1, int& scoreP2, WhoWins& whoWins)
 {
+	if (scoreP1 >= scoreToWin || scoreP2 >= scoreToWin)
+	{
+		if (scoreP1 >= scoreToWin)
+		{
+			whoWins = Player1;
+		}
+		else
+		{
+			whoWins = Player2;
+		}
+		scene = Win;
+
+	}
 	switch (scene)
 	{
 	case Game:
@@ -198,6 +217,8 @@ void updateGameplay(Ball& ball, Paddle& player1, Paddle& player2, int& scoreP1, 
 		inputPause();
 		break;
 	case Win:
+		inputWin();
+		resetGamePlay(ball, player1, player2, scoreP1, scoreP2);
 		break;
 	default:
 		break;

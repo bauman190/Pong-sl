@@ -6,6 +6,7 @@
 #include "sceneGameplay.h"
 #include "Rules.h"
 #include "Pause.h"
+#include "Win.h"
 
 int screenHeight = 540;
 int screenWidth = 960;
@@ -14,8 +15,7 @@ Screen currentScreen = menu;
 
 bool gameRuning = true;
 
-
-
+WhoWins whoWins = None;
 
 void runGame()
 {
@@ -33,6 +33,7 @@ void runGame()
 	inItMenu();
 	inItRules();
 	inItPauseMenu();
+	inItWin();
 	
 	while (!slShouldClose() && gameRuning)
 	{
@@ -42,10 +43,11 @@ void runGame()
 			checkImputMenu();
 			drawMenu();
 			resetGamePlay(ball, player1, player2, scoreP1, scoreP2);
+			whoWins = None;
 			break;
 		case gameplay:
-			updateGameplay(ball, player1, player2, scoreP1, scoreP2);
-			drawGamePlay(ball, player1, player2, scoreP1, scoreP2);
+			updateGameplay(ball, player1, player2, scoreP1, scoreP2 , whoWins);
+			drawGamePlay(ball, player1, player2, scoreP1, scoreP2, whoWins);
 			break;
 		case rules:
 			inputRules();

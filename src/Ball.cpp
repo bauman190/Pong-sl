@@ -17,8 +17,8 @@ void inItBall(Ball& ball)
 {
     ball.radius = 10;
     ball.initialSpeed = 200;
-    ball.pos.x = screenWidth * 0.5;
-    ball.pos.y = screenHeight * 0.5;
+    ball.pos.x = screenWidth * 0.5; 
+    ball.pos.y = screenHeight * 0.5; 
     ball.speed.x = ball.initialSpeed;
     ball.speed.y = ball.initialSpeed;
     ball.hitBox.x = ball.pos.x;

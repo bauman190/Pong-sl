@@ -111,12 +111,10 @@ void ballPaddleColitions(Ball& ball, Paddle player1, Paddle player2)
 		if (ball.speed.y < 0 && ball.pos.y > player1.paddle.y)
 		{
 			ball.speed.y *= -1.0f;
-			std::cout << "entro en el de arriba";
 		}
 		else if (ball.speed.y > 0 && ball.pos.y < player1.paddle.y)
 		{
-			ball.speed.y *= -1.0f;
-			std::cout << "entro en el de abajo";
+			ball.speed.y *= -1.0f;	
 		}
 		ball.speed.x *= -1.0f;
 		ballSpeedUP(ball);
@@ -189,6 +187,38 @@ void drawGamePlay(Ball ball, Paddle player1, Paddle player2, int scoreP1, int sc
 	}
 }
 
+void avoidSimultaneousCollision(Ball& ball, Paddle player1, Paddle player2)
+{
+	if (recRecColition(ball, player1) && ball.pos.y < ball.radius)
+	{
+		ball.pos.x = player1.paddle.x + player1.paddle.width / 2 + ball.radius;
+		ball.pos.y = ball.radius;
+		ball.hitBox.x = ball.pos.x;
+		ball.hitBox.y = ball.pos.y;
+	}
+	else if (recRecColition(ball, player1) && ball.pos.y + ball.radius > screenHeight)
+	{
+		ball.pos.x = player1.paddle.x + player1.paddle.width / 2 + ball.radius;
+		ball.pos.y = screenHeight - ball.radius;
+		ball.hitBox.x = ball.pos.x;
+		ball.hitBox.y = ball.pos.y;
+	}
+	else if (recRecColition(ball, player2) && ball.pos.y < ball.radius)
+	{
+		ball.pos.x = player2.paddle.x - player2.paddle.width / 2 - ball.radius;
+		ball.pos.y = ball.radius;
+		ball.hitBox.x = ball.pos.x;
+		ball.hitBox.y = ball.pos.y;
+	}
+	else if (recRecColition(ball, player2) && ball.pos.y + ball.radius > screenHeight)
+	{
+		ball.pos.x = player2.paddle.x - player2.paddle.width / 2 - ball.radius;
+		ball.pos.y = screenHeight - ball.radius;
+		ball.hitBox.x = ball.pos.x;
+		ball.hitBox.y = ball.pos.y;
+	}
+}
+
 void updateGameplay(Ball& ball, Paddle& player1, Paddle& player2, int& scoreP1, int& scoreP2, WhoWins& whoWins)
 {
 	if (scoreP1 >= scoreToWin || scoreP2 >= scoreToWin)
@@ -209,9 +239,10 @@ void updateGameplay(Ball& ball, Paddle& player1, Paddle& player2, int& scoreP1, 
 	case Game:
 		gamePlayInput(player1, player2);
 		ballWallColitions(ball, player1, player2, scoreP1, scoreP2);
+		ballPaddleColitions(ball, player1, player2);
+		avoidSimultaneousCollision(ball, player1, player2);
 		ballMovment(ball);
 
-		ballPaddleColitions(ball, player1, player2);
 		break;
 	case Pause:
 		inputPause();

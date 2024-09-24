@@ -33,20 +33,20 @@ void drawPause()
 {
 	slSetTextAlign(SL_ALIGN_CENTER);
 	slText(screenWidth * 0.5, screenHeight * 0.90, "Pause");
-	slText(resume.button.x, resume.button.y, "Resume");
-	slText(mainMenu.button.x, mainMenu.button.y, "Main Menu");
+	slText(resume.button.x, resume.button.y - resume.button.height / 2, "Resume");
+	slText(mainMenu.button.x, mainMenu.button.y - mainMenu.button.height / 2, "Main Menu");
 	if (onButton(resume))
 	{
-		slRectangleFill(resume.button.x, resume.button.y + resume.button.height / 2, resume.button.width, resume.button.height);
+		slRectangleFill(resume.button.x, resume.button.y, resume.button.width, resume.button.height);
 		slSetForeColor(0, 0, 0, 1);
-		slText(resume.button.x, resume.button.y, "Resume");
+		slText(resume.button.x, resume.button.y - resume.button.height / 2, "Resume");
 		slSetForeColor(1, 1, 1, 1);
 	}
 	else if (onButton(mainMenu))
 	{
-		slRectangleFill(mainMenu.button.x, mainMenu.button.y + resume.button.height / 2, mainMenu.button.width, mainMenu.button.height);
+		slRectangleFill(mainMenu.button.x, mainMenu.button.y, mainMenu.button.width, mainMenu.button.height);
 		slSetForeColor(0, 0, 0, 1);
-		slText(mainMenu.button.x, mainMenu.button.y, "Main Menu");
+		slText(mainMenu.button.x, mainMenu.button.y - mainMenu.button.height / 2, "Main Menu");
 		slSetForeColor(1, 1, 1, 1);
 	}
 }

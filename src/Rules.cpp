@@ -18,18 +18,18 @@ void drawRules()
 	slText(0, screenHeight * 0.6, "First to score 5 Wins");
 	slText(0, screenHeight * 0.5, "Player 1: Up: W  , Down: S");
 	slText(0, screenHeight * 0.4, "Player 2: Up: UP Key  , Down: Down Key");
-	slText(0, screenHeight * 0.25, "Pause : P");
+	slText(0, screenHeight * 0.25, "Pause : Esc");
 
 	slSetFontSize(50);
 	slSetTextAlign(SL_ALIGN_CENTER);
-	slText(back.button.x, back.button.y, "Back");
+	slText(back.button.x, back.button.y - back.button.height / 2, "Back");
 
 
 	if (onButton(back))
 	{
-		slRectangleFill(back.button.x, back.button.y + back.button.height / 2, back.button.width, back.button.height);
+		slRectangleFill(back.button.x, back.button.y, back.button.width, back.button.height);
 		slSetForeColor(0, 0, 0, 1);
-		slText( back.button.x, back.button.y, "Back");
+		slText( back.button.x, back.button.y - back.button.height / 2, "Back");
 		slSetForeColor(1, 1, 1, 1);
 	}
 	

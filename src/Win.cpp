@@ -26,21 +26,21 @@ void drawWin(WhoWins whoWins)
 		slText(screenWidth / 2, screenHeight * 0.75, "Player 2 Wins");
     }
 
-	slText(playAgain.button.x, playAgain.button.y, "Play Again");
-	slText(mainMenu.button.x, mainMenu.button.y, "Main Menu");
+	slText(playAgain.button.x, playAgain.button.y - playAgain.button.height / 2, "Play Again");
+	slText(mainMenu.button.x, mainMenu.button.y - mainMenu.button.height / 2, "Main Menu");
 
 	if (onButton(playAgain))
 	{
-		slRectangleFill(playAgain.button.x, playAgain.button.y + playAgain.button.height / 2, playAgain.button.width, playAgain.button.height);
+		slRectangleFill(playAgain.button.x, playAgain.button.y, playAgain.button.width, playAgain.button.height);
 		slSetForeColor(0, 0, 0, 1);
-		slText(playAgain.button.x, playAgain.button.y, "Play Again");
+		slText(playAgain.button.x, playAgain.button.y - playAgain.button.height / 2, "Play Again");
 		slSetForeColor(1, 1, 1, 1);
 	}
 	else if (onButton(mainMenu))
 	{
-		slRectangleFill(mainMenu.button.x, mainMenu.button.y + mainMenu.button.height / 2, mainMenu.button.width, mainMenu.button.height);
+		slRectangleFill(mainMenu.button.x, mainMenu.button.y, mainMenu.button.width, mainMenu.button.height);
 		slSetForeColor(0, 0, 0, 1);
-		slText(mainMenu.button.x, mainMenu.button.y, "Main Menu");
+		slText(mainMenu.button.x, mainMenu.button.y - mainMenu.button.height / 2, "Main Menu");
 		slSetForeColor(1, 1, 1, 1);
 	}
 }

@@ -37,28 +37,28 @@ void drawMenu()
 
 	slText(screenWidth / 2, screenHeight * 0.80, "PONG");
 
-	slText(play.button.x, play.button.y, "Play");
-	slText( Rules.button.x, Rules.button.y, "Rules");
-	slText( exit.button.x, exit.button.y, "Exit");
+	slText(play.button.x, play.button.y - play.button.height / 2, "Play");
+	slText( Rules.button.x, Rules.button.y - Rules.button.height / 2, "Rules");
+	slText( exit.button.x, exit.button.y - exit.button.height / 2, "Exit");
 	if (onButton(play))
 	{
-		slRectangleFill(play.button.x, play.button.y + play.button.height / 2, play.button.width, play.button.height);
+		slRectangleFill(play.button.x, play.button.y, play.button.width, play.button.height);
 		slSetForeColor(0, 0, 0, 1);
-		slText(play.button.x, play.button.y, "Play");
+		slText(play.button.x, play.button.y - play.button.height / 2, "Play");
 		slSetForeColor(1, 1, 1, 1);
 	}
 	else if (onButton(exit))
 	{
-		slRectangleFill(exit.button.x, exit.button.y + exit.button.height / 2, exit.button.width, exit.button.height);
+		slRectangleFill(exit.button.x, exit.button.y, exit.button.width, exit.button.height);
 		slSetForeColor(0, 0, 0, 1);
-		slText(exit.button.x, exit.button.y, "Exit");
+		slText(exit.button.x, exit.button.y - exit.button.height / 2, "Exit");
 		slSetForeColor(1, 1, 1, 1);
 	}
 	else if (onButton(Rules))
 	{
-		slRectangleFill(Rules.button.x, Rules.button.y + Rules.button.height / 2, Rules.button.width, Rules.button.height);
+		slRectangleFill(Rules.button.x, Rules.button.y, Rules.button.width, Rules.button.height);
 		slSetForeColor(0, 0, 0, 1);
-		slText(Rules.button.x, Rules.button.y, "Rules");
+		slText(Rules.button.x, Rules.button.y - Rules.button.height / 2, "Rules");
 		slSetForeColor(1, 1, 1, 1);
 	}
 	slSetFontSize(20);
@@ -75,18 +75,18 @@ void inItMenu()
 	play.button.x = screenWidth / 2 ;
 	play.button.y = screenHeight / 2;
 	play.button.width = slGetTextWidth("Play");
-	play.button.height = 50;
+	play.button.height = slGetTextHeight("Play");
 
 
 	Rules.button.x = screenWidth / 2;
-	Rules.button.y = screenHeight * 0.375;
+	Rules.button.y = screenHeight * 0.325;
 	Rules.button.width = slGetTextWidth("Rules");
-	Rules.button.height = 50;
+	Rules.button.height = slGetTextHeight("Rules");
 
 	exit.button.x = screenWidth / 2 ;
-	exit.button.y = screenHeight * 0.25;
-	exit.button.width = slGetTextWidth("Exit");;
-	exit.button.height = 50;
+	exit.button.y = screenHeight * 0.15;
+	exit.button.width = slGetTextWidth("Exit");
+	exit.button.height = slGetTextHeight("Exit");
 
 
 

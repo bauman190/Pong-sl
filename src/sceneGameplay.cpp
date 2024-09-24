@@ -160,8 +160,6 @@ void drawGamePlay(Ball ball, Paddle player1, Paddle player2, int scoreP1, int sc
 	switch (scene)
 	{
 	case Game:
-		slSetForeColor(0.5, 0.9, 0.5, 0.7);
-		slRectangleFill(ball.hitBox.x, ball.hitBox.y, ball.hitBox.width, ball.hitBox.height);
 		slSetForeColor(1, 1, 1, 1);
 		slRectangleFill(player2.paddle.x, player2.paddle.y, player2.paddle.width, player2.paddle.height);
 		slRectangleFill(player1.paddle.x, player1.paddle.y, player1.paddle.width, player1.paddle.height);

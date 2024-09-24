@@ -23,18 +23,26 @@
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Pause.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Rules.cpp" />
+    <ClCompile Include="src\sceneGameplay.cpp" />
     <ClCompile Include="src\sceneMenu.cpp" />
+    <ClCompile Include="src\Win.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Pause.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\Rectangle.h" />
+    <ClInclude Include="src\Rules.h" />
+    <ClInclude Include="src\sceneGameplay.h" />
     <ClInclude Include="src\sceneMenu.h" />
     <ClInclude Include="src\ScreenOptions.h" />
     <ClInclude Include="src\Vector2.h" />
+    <ClInclude Include="src\Win.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

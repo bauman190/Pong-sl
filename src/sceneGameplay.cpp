@@ -5,6 +5,7 @@
 #include "ScreenOptions.h"
 #include "Pause.h"
 #include "Win.h"
+#include <iostream>
 
 extern int screenHeight;
 extern int screenWidth;
@@ -12,9 +13,6 @@ extern int screenWidth;
 inGameScene scene;
 static int scoreToWin = 5;
 extern WhoWins whoWins;
-
-//void drawGamePlay(Ball ball, Paddle player1, Paddle player2, int scoreP1, int scoreP2, WhoWins whoWins);
-//void updateGameplay(Ball& ball, Paddle& player1, Paddle& player2, int& scoreP1, int& scoreP2, WhoWins& whoWins);
 
 void gamePlayInput(Paddle& player1, Paddle& player2)
 {
@@ -113,10 +111,12 @@ void ballPaddleColitions(Ball& ball, Paddle player1, Paddle player2)
 		if (ball.speed.y < 0 && ball.pos.y > player1.paddle.y)
 		{
 			ball.speed.y *= -1.0f;
+			std::cout << "entro en el de arriba";
 		}
 		else if (ball.speed.y > 0 && ball.pos.y < player1.paddle.y)
 		{
 			ball.speed.y *= -1.0f;
+			std::cout << "entro en el de abajo";
 		}
 		ball.speed.x *= -1.0f;
 		ballSpeedUP(ball);

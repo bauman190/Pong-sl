@@ -7,7 +7,7 @@ http://www.libsigil.com/
 ## Project Files Description
 
 - lib
- - sigil files
+  - sigil files
    
 - res
    - text font
